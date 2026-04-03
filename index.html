@@ -527,10 +527,18 @@ function removeAttach() {
 async function uploadFile(file) {
   const ext = file.name.split('.').pop();
   const path = `${Date.now()}_${Math.random().toString(36).slice(2)}.${ext}`;
-  const { error } = await db.storage.from('attachments').upload(path, file, { contentType: file.type });
-  if (error) throw error;
-  const { data } = db.storage.from('attachments').getPublicUrl(path);
-  return { url: data.publicUrl, name: file.name, type: file.type };
+  const arrayBuffer = await file.arrayBuffer();
+  const uint8Array = new Uint8Array(arrayBuffer);
+  const { data: upData, error } = await db.storage.from('attachments').upload(path, uint8Array, {
+    contentType: file.type,
+    upsert: false
+  });
+  if (error) {
+    console.error('Upload error:', error);
+    throw new Error(error.message || 'Upload failed');
+  }
+  const { data: urlData } = db.storage.from('attachments').getPublicUrl(upData.path || path);
+  return { url: urlData.publicUrl, name: file.name, type: file.type };
 }
 
 // ── 메시지 ──
