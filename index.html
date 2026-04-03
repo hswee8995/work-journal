@@ -34,10 +34,34 @@
   }
   body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg3); color: var(--text); font-size: 14px; min-height: 100vh; }
   .wrap { max-width: 780px; margin: 0 auto; padding: 24px 16px; }
-  .top-nav { display: flex; gap: 8px; margin-bottom: 20px; background: var(--bg); border: 0.5px solid var(--border); border-radius: var(--radius-lg); padding: 6px; }
-  .nav-btn { flex: 1; padding: 8px; border-radius: var(--radius); border: none; background: transparent; font-size: 13px; font-weight: 500; cursor: pointer; color: var(--text2); transition: all 0.15s; }
-  .nav-btn.active { background: var(--bg3); color: var(--text); }
-  .page { display: none; } .page.active { display: block; }
+
+  /* 로그인 화면 */
+  .login-wrap { max-width: 400px; margin: 80px auto; padding: 0 16px; }
+  .login-card { background: var(--bg); border: 0.5px solid var(--border); border-radius: var(--radius-lg); padding: 32px 28px; }
+  .login-title { font-size: 18px; font-weight: 500; margin-bottom: 6px; }
+  .login-sub { font-size: 13px; color: var(--text2); margin-bottom: 28px; }
+  .role-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
+  .role-btn { padding: 14px 10px; border-radius: var(--radius); border: 0.5px solid var(--border); background: var(--bg2); font-size: 13px; font-weight: 500; cursor: pointer; color: var(--text2); font-family: inherit; transition: all 0.15s; text-align: center; }
+  .role-btn:hover { border-color: var(--border2); color: var(--text); }
+  .role-btn.selected { border-color: #185FA5; color: #185FA5; background: var(--blue-bg); }
+  .role-icon { font-size: 22px; display: block; margin-bottom: 6px; }
+  .login-field { margin-bottom: 14px; }
+  .login-field label { font-size: 12px; color: var(--text2); display: block; margin-bottom: 5px; }
+  .login-field input { width: 100%; font-family: inherit; font-size: 14px; color: var(--text); background: var(--bg2); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 10px 12px; outline: none; transition: border-color 0.15s; }
+  .login-field input:focus { border-color: var(--border2); }
+  .login-err { font-size: 12px; color: var(--red-text); background: var(--red-bg); border: 0.5px solid var(--red-border); border-radius: var(--radius); padding: 8px 12px; margin-bottom: 12px; display: none; }
+  .login-btn { width: 100%; padding: 11px; border-radius: var(--radius); border: none; background: #185FA5; color: #E6F1FB; font-size: 14px; font-weight: 500; cursor: pointer; font-family: inherit; transition: background 0.15s; }
+  .login-btn:hover { background: #0C447C; }
+  .login-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  /* 앱 상단 */
+  .app-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+  .app-header-left { display: flex; align-items: center; gap: 10px; }
+  .app-title { font-size: 15px; font-weight: 500; }
+  .app-role { font-size: 12px; color: var(--text2); background: var(--bg2); border: 0.5px solid var(--border); border-radius: 99px; padding: 3px 10px; }
+  .logout-btn { font-size: 12px; color: var(--text3); cursor: pointer; background: none; border: none; font-family: inherit; padding: 4px 8px; border-radius: var(--radius); }
+  .logout-btn:hover { color: var(--text2); background: var(--bg2); }
+
   .card { background: var(--bg); border: 0.5px solid var(--border); border-radius: var(--radius-lg); padding: 16px 20px; margin-bottom: 12px; }
   .card-title { font-size: 13px; font-weight: 500; color: var(--text2); margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
   .badge { font-size: 11px; font-weight: 500; padding: 2px 8px; border-radius: 99px; }
@@ -50,8 +74,8 @@
   .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
   .field { display: flex; flex-direction: column; gap: 4px; }
   .field label { font-size: 12px; color: var(--text2); }
-  input, select, textarea { width: 100%; font-family: inherit; font-size: 13px; color: var(--text); background: var(--bg2); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 8px 10px; outline: none; transition: border-color 0.15s; }
-  input:focus, select:focus, textarea:focus { border-color: var(--border2); }
+  input[type=text], input[type=date], select, textarea { width: 100%; font-family: inherit; font-size: 13px; color: var(--text); background: var(--bg2); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 8px 10px; outline: none; transition: border-color 0.15s; }
+  input[type=text]:focus, input[type=date]:focus, select:focus, textarea:focus { border-color: var(--border2); }
   textarea { resize: vertical; min-height: 64px; line-height: 1.5; }
   .task-table { width: 100%; border-collapse: collapse; font-size: 13px; }
   .task-table th { background: var(--bg2); color: var(--text2); font-weight: 500; font-size: 12px; padding: 6px 10px; text-align: left; border-bottom: 0.5px solid var(--border); }
@@ -98,112 +122,212 @@
   .chev.open { transform: rotate(180deg); }
   .loading { text-align: center; padding: 2rem; color: var(--text3); font-size: 13px; }
   .empty { text-align: center; padding: 3rem; color: var(--text3); font-size: 13px; }
-  .feedback-box { background: var(--bg2); border-radius: var(--radius); padding: 10px 12px; min-height: 54px; font-size: 13px; color: var(--text3); font-style: italic; border: 0.5px solid var(--border); }
   @media (max-width: 520px) {
     .field-row { grid-template-columns: 1fr; }
     .fb-grid { grid-template-columns: 1fr; }
-    .stat-grid { grid-template-columns: repeat(3, 1fr); }
     .fb-view { grid-template-columns: 1fr; }
   }
 </style>
 </head>
 <body>
-<div class="wrap">
-  <div class="top-nav">
-    <button class="nav-btn active" onclick="switchPage('staff', this)">직원 — 업무일지 작성</button>
-    <button class="nav-btn" onclick="switchPage('admin', this)">관리자 — 보고 확인</button>
+
+<!-- 로그인 화면 -->
+<div id="login-screen" class="login-wrap">
+  <div class="login-card">
+    <div class="login-title">업무일지</div>
+    <div class="login-sub">역할을 선택하고 접속해주세요</div>
+    <div class="role-grid">
+      <button class="role-btn" id="role-staff" onclick="selectRole('staff')">
+        <span class="role-icon">✏️</span>직원
+      </button>
+      <button class="role-btn" id="role-admin" onclick="selectRole('admin')">
+        <span class="role-icon">📋</span>관리자
+      </button>
+    </div>
+    <div class="login-field" id="field-name">
+      <label>이름</label>
+      <input type="text" id="login-name" placeholder="이름을 입력해주세요" onkeydown="if(event.key==='Enter')doLogin()">
+    </div>
+    <div class="login-field" id="field-pw" style="display:none">
+      <label>관리자 비밀번호</label>
+      <input type="password" id="login-pw" placeholder="비밀번호를 입력해주세요" onkeydown="if(event.key==='Enter')doLogin()">
+    </div>
+    <div class="login-err" id="login-err"></div>
+    <button class="login-btn" onclick="doLogin()">접속하기</button>
   </div>
+</div>
 
-  <!-- 직원 페이지 -->
-  <div id="page-staff" class="page active">
-    <div id="toast-staff" class="toast"></div>
-    <div class="card">
-      <div class="card-title">기본 정보</div>
-      <div class="field-row">
-        <div class="field"><label>작성자 이름</label><input type="text" id="s-name" placeholder="예) 김민준"></div>
-        <div class="field"><label>날짜</label><input type="date" id="s-date"></div>
+<!-- 앱 화면 -->
+<div id="app-screen" style="display:none">
+  <div class="wrap">
+    <div class="app-header">
+      <div class="app-header-left">
+        <div class="app-title">업무일지</div>
+        <div class="app-role" id="app-role-badge"></div>
       </div>
-      <div class="field"><label>담당 클라이언트</label><input type="text" id="s-client" placeholder="예) (주)한국산업"></div>
+      <button class="logout-btn" onclick="doLogout()">로그아웃</button>
     </div>
 
-    <div class="card">
-      <div class="card-title"><span class="badge b-blue">1</span> 오늘 완료한 일</div>
-      <table class="task-table">
-        <thead><tr><th style="width:42%">업무 내용</th><th>세부 처리 결과</th><th style="width:72px">상태</th></tr></thead>
-        <tbody id="done-body"></tbody>
-      </table>
-      <span class="add-row" onclick="addRow('done-body','done')">+ 행 추가</span>
-    </div>
+    <!-- 직원 페이지 -->
+    <div id="page-staff" style="display:none">
+      <div id="toast-staff" class="toast"></div>
+      <div class="card">
+        <div class="card-title">기본 정보</div>
+        <div class="field-row">
+          <div class="field"><label>작성자 이름</label><input type="text" id="s-name" readonly style="opacity:0.7;cursor:default"></div>
+          <div class="field"><label>날짜</label><input type="date" id="s-date"></div>
+        </div>
+        <div class="field"><label>담당 클라이언트</label><input type="text" id="s-client" placeholder="예) (주)한국산업"></div>
+      </div>
 
-    <div class="card">
-      <div class="card-title"><span class="badge b-amber">2</span> 발생한 이슈 &amp; 해결 방안</div>
-      <table class="task-table">
-        <thead><tr><th style="width:42%">이슈 내용</th><th>해결 방안 / 현재 상태</th><th style="width:72px">처리</th></tr></thead>
-        <tbody id="issue-body"></tbody>
-      </table>
-      <span class="add-row" onclick="addRow('issue-body','issue')">+ 행 추가</span>
-    </div>
+      <div class="card">
+        <div class="card-title"><span class="badge b-blue">1</span> 오늘 완료한 일</div>
+        <table class="task-table">
+          <thead><tr><th style="width:42%">업무 내용</th><th>세부 처리 결과</th><th style="width:72px">상태</th></tr></thead>
+          <tbody id="done-body"></tbody>
+        </table>
+        <span class="add-row" onclick="addRow('done-body','done')">+ 행 추가</span>
+      </div>
 
-    <div class="card">
-      <div class="card-title"><span class="badge b-teal">3</span> 내일 할 일</div>
-      <table class="task-table">
-        <thead><tr><th style="width:42%">예정 업무</th><th>참고 사항</th><th style="width:72px">우선순위</th></tr></thead>
-        <tbody id="todo-body"></tbody>
-      </table>
-      <span class="add-row" onclick="addRow('todo-body','todo')">+ 행 추가</span>
-    </div>
+      <div class="card">
+        <div class="card-title"><span class="badge b-amber">2</span> 발생한 이슈 &amp; 해결 방안</div>
+        <table class="task-table">
+          <thead><tr><th style="width:42%">이슈 내용</th><th>해결 방안 / 현재 상태</th><th style="width:72px">처리</th></tr></thead>
+          <tbody id="issue-body"></tbody>
+        </table>
+        <span class="add-row" onclick="addRow('issue-body','issue')">+ 행 추가</span>
+      </div>
 
-    <div class="card">
-      <div class="card-title"><span class="badge b-purple">4</span> 스스로에 대한 피드백</div>
-      <div class="fb-grid">
-        <div class="field"><label>잘한 점</label><textarea id="fb-good" placeholder="예) 마감 전 오류 사전 발견"></textarea></div>
-        <div class="field"><label>개선할 점</label><textarea id="fb-improve" placeholder="예) 이슈 보고 타이밍 개선 필요"></textarea></div>
-        <div class="field"><label>내일 집중할 목표</label><textarea id="fb-goal" placeholder="예) 오전 중 전표 입력 완료"></textarea></div>
-        <div class="field">
-          <label>오늘 업무 만족도</label>
-          <div class="mood-row">
-            <button class="mood-btn" onclick="setMood(this,'좋음')">😊 좋음</button>
-            <button class="mood-btn" onclick="setMood(this,'보통')">😐 보통</button>
-            <button class="mood-btn" onclick="setMood(this,'힘듦')">😔 힘듦</button>
+      <div class="card">
+        <div class="card-title"><span class="badge b-teal">3</span> 내일 할 일</div>
+        <table class="task-table">
+          <thead><tr><th style="width:42%">예정 업무</th><th>참고 사항</th><th style="width:72px">우선순위</th></tr></thead>
+          <tbody id="todo-body"></tbody>
+        </table>
+        <span class="add-row" onclick="addRow('todo-body','todo')">+ 행 추가</span>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><span class="badge b-purple">4</span> 스스로에 대한 피드백</div>
+        <div class="fb-grid">
+          <div class="field"><label>잘한 점</label><textarea id="fb-good" placeholder="예) 마감 전 오류 사전 발견"></textarea></div>
+          <div class="field"><label>개선할 점</label><textarea id="fb-improve" placeholder="예) 이슈 보고 타이밍 개선 필요"></textarea></div>
+          <div class="field"><label>내일 집중할 목표</label><textarea id="fb-goal" placeholder="예) 오전 중 전표 입력 완료"></textarea></div>
+          <div class="field">
+            <label>오늘 업무 만족도</label>
+            <div class="mood-row">
+              <button class="mood-btn" onclick="setMood(this,'좋음')">😊 좋음</button>
+              <button class="mood-btn" onclick="setMood(this,'보통')">😐 보통</button>
+              <button class="mood-btn" onclick="setMood(this,'힘듦')">😔 힘듦</button>
+            </div>
           </div>
         </div>
       </div>
+      <div class="submit-row">
+        <button class="btn btn-primary" id="submit-btn" onclick="submitJournal()">업무일지 제출</button>
+      </div>
     </div>
-    <div class="submit-row">
-      <button class="btn btn-primary" id="submit-btn" onclick="submitJournal()">업무일지 제출</button>
-    </div>
-  </div>
 
-  <!-- 관리자 페이지 -->
-  <div id="page-admin" class="page">
-    <div id="toast-admin" class="toast"></div>
-    <div class="admin-meta">
-      <input type="date" id="admin-date" style="width:160px;" oninput="loadAdmin()">
-      <button class="btn" onclick="clearDate()">전체 보기</button>
+    <!-- 관리자 페이지 -->
+    <div id="page-admin" style="display:none">
+      <div id="toast-admin" class="toast"></div>
+      <div class="admin-meta">
+        <input type="date" id="admin-date" style="width:160px;" oninput="loadAdmin()">
+        <button class="btn" onclick="clearDate()">전체 보기</button>
+      </div>
+      <div class="stat-grid">
+        <div class="stat"><div class="stat-label">조회된 일지</div><div class="stat-val" id="st-total">—</div></div>
+        <div class="stat"><div class="stat-label">진행중 이슈</div><div class="stat-val" id="st-issues">—</div></div>
+        <div class="stat"><div class="stat-label">오늘 제출</div><div class="stat-val" id="st-today">—</div></div>
+      </div>
+      <div id="admin-list"><div class="loading">불러오는 중...</div></div>
     </div>
-    <div class="stat-grid">
-      <div class="stat"><div class="stat-label">조회된 일지</div><div class="stat-val" id="st-total">—</div></div>
-      <div class="stat"><div class="stat-label">진행중 이슈</div><div class="stat-val" id="st-issues">—</div></div>
-      <div class="stat"><div class="stat-label">오늘 제출</div><div class="stat-val" id="st-today">—</div></div>
-    </div>
-    <div id="admin-list"><div class="loading">날짜를 선택하거나 전체 보기를 눌러주세요</div></div>
   </div>
 </div>
 
 <script>
 const SUPA_URL = 'https://fehrtmzekpkjbaxfnxuv.supabase.co';
 const SUPA_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZlaHJ0bXpla3BramJheGZueHV2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUxNjAzOTMsImV4cCI6MjA5MDczNjM5M30.Shm8jaIU3KNSG41_wd_d_PttQ3Zx4J8jlnPGrz3MnkE';
+const ADMIN_PW = 'dbwls0307';
 const { createClient } = supabase;
 const db = createClient(SUPA_URL, SUPA_KEY);
 
+let currentRole = '';
+let currentName = '';
 let mood = '';
 
-function switchPage(p, btn) {
-  document.querySelectorAll('.page').forEach(el => el.classList.remove('active'));
-  document.querySelectorAll('.nav-btn').forEach(el => el.classList.remove('active'));
-  document.getElementById('page-' + p).classList.add('active');
-  btn.classList.add('active');
-  if (p === 'admin') loadAdmin();
+function selectRole(role) {
+  currentRole = role;
+  document.getElementById('role-staff').classList.toggle('selected', role === 'staff');
+  document.getElementById('role-admin').classList.toggle('selected', role === 'admin');
+  document.getElementById('field-name').style.display = role === 'staff' ? 'block' : 'none';
+  document.getElementById('field-pw').style.display = role === 'admin' ? 'block' : 'none';
+  document.getElementById('login-err').style.display = 'none';
+  if (role === 'staff') document.getElementById('login-name').focus();
+  else document.getElementById('login-pw').focus();
+}
+
+function doLogin() {
+  const err = document.getElementById('login-err');
+  err.style.display = 'none';
+  if (!currentRole) { showErr('역할을 선택해주세요.'); return; }
+  if (currentRole === 'staff') {
+    const name = document.getElementById('login-name').value.trim();
+    if (!name) { showErr('이름을 입력해주세요.'); return; }
+    currentName = name;
+    enterApp('staff');
+  } else {
+    const pw = document.getElementById('login-pw').value;
+    if (pw !== ADMIN_PW) { showErr('비밀번호가 올바르지 않습니다.'); return; }
+    currentName = '관리자';
+    enterApp('admin');
+  }
+}
+
+function showErr(msg) {
+  const err = document.getElementById('login-err');
+  err.textContent = msg;
+  err.style.display = 'block';
+}
+
+function enterApp(role) {
+  document.getElementById('login-screen').style.display = 'none';
+  document.getElementById('app-screen').style.display = 'block';
+  document.getElementById('app-role-badge').textContent = role === 'admin' ? '관리자' : currentName + ' (직원)';
+  if (role === 'staff') {
+    document.getElementById('page-staff').style.display = 'block';
+    document.getElementById('page-admin').style.display = 'none';
+    document.getElementById('s-name').value = currentName;
+    document.getElementById('s-date').value = today();
+    initStaffForm();
+  } else {
+    document.getElementById('page-admin').style.display = 'block';
+    document.getElementById('page-staff').style.display = 'none';
+    document.getElementById('admin-date').value = today();
+    loadAdmin();
+  }
+}
+
+function doLogout() {
+  currentRole = ''; currentName = ''; mood = '';
+  document.getElementById('login-screen').style.display = 'block';
+  document.getElementById('app-screen').style.display = 'none';
+  document.getElementById('login-name').value = '';
+  document.getElementById('login-pw').value = '';
+  document.getElementById('login-err').style.display = 'none';
+  document.getElementById('role-staff').classList.remove('selected');
+  document.getElementById('role-admin').classList.remove('selected');
+  document.getElementById('field-name').style.display = 'block';
+  document.getElementById('field-pw').style.display = 'none';
+  currentRole = '';
+}
+
+function initStaffForm() {
+  ['done-body','issue-body','todo-body'].forEach(id => document.getElementById(id).innerHTML = '');
+  addRow('done-body','done'); addRow('issue-body','issue'); addRow('todo-body','todo');
+  ['fb-good','fb-improve','fb-goal'].forEach(id => document.getElementById(id).value = '');
+  mood = '';
+  document.querySelectorAll('.mood-btn').forEach(b => b.classList.remove('on'));
 }
 
 function setMood(btn, val) {
@@ -245,15 +369,13 @@ function showToast(id, msg, type = 'success') {
 }
 
 async function submitJournal() {
-  const name = document.getElementById('s-name').value.trim();
   const date = document.getElementById('s-date').value;
   const client = document.getElementById('s-client').value.trim();
-  if (!name || !date) { showToast('toast-staff', '이름과 날짜를 입력해주세요.', 'error'); return; }
+  if (!date) { showToast('toast-staff', '날짜를 입력해주세요.', 'error'); return; }
   const btn = document.getElementById('submit-btn');
-  btn.disabled = true;
-  btn.textContent = '제출 중...';
+  btn.disabled = true; btn.textContent = '제출 중...';
   const { error } = await db.from('journals').insert({
-    name, date, client,
+    name: currentName, date, client,
     done: getRows('done-body'),
     issues: getRows('issue-body'),
     todos: getRows('todo-body'),
@@ -264,24 +386,12 @@ async function submitJournal() {
       mood
     }
   });
-  btn.disabled = false;
-  btn.textContent = '업무일지 제출';
-  if (error) { showToast('toast-staff', '저장 중 오류가 발생했습니다: ' + error.message, 'error'); return; }
+  btn.disabled = false; btn.textContent = '업무일지 제출';
+  if (error) { showToast('toast-staff', '저장 중 오류: ' + error.message, 'error'); return; }
   showToast('toast-staff', '업무일지가 성공적으로 제출되었습니다.');
-  resetForm();
-}
-
-function resetForm() {
-  ['s-name', 's-client', 'fb-good', 'fb-improve', 'fb-goal'].forEach(id => document.getElementById(id).value = '');
+  initStaffForm();
   document.getElementById('s-date').value = today();
-  mood = '';
-  document.querySelectorAll('.mood-btn').forEach(b => b.classList.remove('on'));
-  ['done-body', 'issue-body', 'todo-body'].forEach(id => {
-    document.getElementById(id).innerHTML = '';
-  });
-  addRow('done-body', 'done');
-  addRow('issue-body', 'issue');
-  addRow('todo-body', 'todo');
+  document.getElementById('s-client').value = '';
 }
 
 function today() { return new Date().toISOString().slice(0, 10); }
@@ -290,27 +400,21 @@ async function loadAdmin() {
   const filterDate = document.getElementById('admin-date').value;
   const list = document.getElementById('admin-list');
   list.innerHTML = '<div class="loading">불러오는 중...</div>';
-
   let query = db.from('journals').select('*').order('date', { ascending: false }).order('created_at', { ascending: false });
   if (filterDate) query = query.eq('date', filterDate);
   const { data, error } = await query;
-
   if (error) { list.innerHTML = '<div class="empty">데이터를 불러오지 못했습니다.</div>'; return; }
-
   const todayStr = today();
   const todayCount = data.filter(j => j.date === todayStr).length;
   const issueCount = data.reduce((acc, j) => acc + (j.issues || []).filter(i => i.c === '진행중' || i.c === '미해결').length, 0);
-
   document.getElementById('st-total').textContent = data.length;
   document.getElementById('st-issues').textContent = issueCount;
   document.getElementById('st-today').textContent = todayCount;
-
-  if (data.length === 0) { list.innerHTML = '<div class="empty">해당 날짜에 제출된 업무일지가 없습니다.</div>'; return; }
-
+  if (data.length === 0) { list.innerHTML = '<div class="empty">제출된 업무일지가 없습니다.</div>'; return; }
   const moodMap = { '좋음': '😊', '보통': '😐', '힘듦': '😔' };
   list.innerHTML = data.map((j, i) => {
     const initials = j.name ? j.name.slice(0, 2) : '??';
-    const mood = moodMap[j.feedback?.mood] || '';
+    const moodIcon = moodMap[j.feedback?.mood] || '';
     const doneRows = (j.done || []).map(r => `<tr><td>${r.a}</td><td>${r.b}</td><td><span class="badge b-green">${r.c}</span></td></tr>`).join('');
     const issueRows = (j.issues || []).map(r => `<tr><td>${r.a}</td><td>${r.b}</td><td><span class="badge ${r.c === '해결' ? 'b-green' : r.c === '진행중' ? 'b-amber' : 'b-red'}">${r.c}</span></td></tr>`).join('');
     const todoRows = (j.todos || []).map(r => `<tr><td>${r.a}</td><td>${r.b}</td><td><span class="badge b-blue">${r.c}</span></td></tr>`).join('');
@@ -321,7 +425,7 @@ async function loadAdmin() {
           <div class="avatar">${initials}</div>
           <span style="font-weight:500">${j.name}</span>
           ${j.client ? `<span style="font-size:12px;color:var(--text3)">· ${j.client}</span>` : ''}
-          ${mood ? `<span style="font-size:15px">${mood}</span>` : ''}
+          ${moodIcon ? `<span style="font-size:15px">${moodIcon}</span>` : ''}
         </div>
         <div style="display:flex;align-items:center;gap:10px">
           <span style="font-size:12px;color:var(--text3)">${j.date}</span>
@@ -353,13 +457,6 @@ function clearDate() {
   document.getElementById('admin-date').value = '';
   loadAdmin();
 }
-
-// 초기화
-document.getElementById('s-date').value = today();
-document.getElementById('admin-date').value = today();
-addRow('done-body', 'done');
-addRow('issue-body', 'issue');
-addRow('todo-body', 'todo');
 </script>
 </body>
 </html>
