@@ -325,8 +325,8 @@
 </div>
 
 <script>
-const SUPA_URL = 'https://fehrtmzekpkjbaxfnxuv.supabase.co';
-const SUPA_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZlaHJ0bXpla3BramJheGZueHV2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUxNjAzOTMsImV4cCI6MjA5MDczNjM5M30.Shm8jaIU3KNSG41_wd_d_PttQ3Zx4J8jlnPGrz3MnkE';
+const SUPA_URL = 'https://nmaylcrotyiafzrejrcu.supabase.co';
+const SUPA_KEY = 'sb_publishable_--u9GWiKsLGod8k_XY1H-Q_XNnlYV0d';
 const ADMIN_PW = 'dbwls0307';
 
 let db, currentRole = '', currentName = '', mood = '';
@@ -629,12 +629,12 @@ async function sendMessage() {
   const btn = document.getElementById('send-btn');
   btn.disabled = true;
 
-  let fileData = {};
+  let fileUrl = null, fileName = null, fileType = null;
   if (pendingFile) {
     document.getElementById('upload-progress').style.display = 'block';
     try {
       const result = await uploadFile(pendingFile);
-      fileData = { file_url: result.url, file_name: result.name, file_type: result.type };
+      fileUrl = result.url; fileName = result.name; fileType = result.type;
     } catch(e) {
       alert('파일 업로드 오류: ' + e.message);
       document.getElementById('upload-progress').style.display = 'none';
@@ -645,12 +645,9 @@ async function sendMessage() {
   }
 
   try {
-    const { error } = await db.from('messages').insert({
-      sender: currentName, role: currentRole,
-      content: content || null,
-      client_tag: tag || null,
-      ...fileData
-    });
+    const insertData = { sender: currentName, role: currentRole, content: content || null, client_tag: tag || null };
+    if (fileUrl) { insertData.file_url = fileUrl; insertData.file_name = fileName; insertData.file_type = fileType; }
+    const { error } = await db.from('messages').insert(insertData);
     if (!error) {
       input.value = ''; input.style.height = 'auto';
       pendingFile = null;
