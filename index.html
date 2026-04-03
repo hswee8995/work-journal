@@ -39,8 +39,7 @@
   .login-title { font-size: 18px; font-weight: 500; margin-bottom: 6px; }
   .login-sub { font-size: 13px; color: var(--text2); margin-bottom: 28px; }
   .role-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
-  .role-btn { padding: 14px 10px; border-radius: var(--radius); border: 0.5px solid var(--border); background: var(--bg2); font-size: 13px; font-weight: 500; cursor: pointer; color: var(--text2); font-family: inherit; transition: all 0.15s; text-align: center; }
-  .role-btn:hover { border-color: var(--border2); color: var(--text); }
+  .role-btn { padding: 14px 10px; border-radius: var(--radius); border: 0.5px solid var(--border); background: var(--bg2); font-size: 13px; font-weight: 500; cursor: pointer; color: var(--text2); font-family: inherit; text-align: center; }
   .role-btn.selected { border-color: #185FA5; color: #185FA5; background: var(--blue-bg); }
   .role-icon { font-size: 22px; display: block; margin-bottom: 6px; }
   .login-field { margin-bottom: 14px; }
@@ -58,8 +57,7 @@
   .tab-nav { display: flex; gap: 4px; margin-bottom: 16px; background: var(--bg); border: 0.5px solid var(--border); border-radius: var(--radius-lg); padding: 5px; }
   .tab-btn { flex: 1; padding: 8px; border-radius: var(--radius); border: none; background: transparent; font-size: 13px; font-weight: 500; cursor: pointer; color: var(--text2); font-family: inherit; }
   .tab-btn.active { background: var(--bg3); color: var(--text); }
-  .tab-page { display: none; }
-  .tab-page.active { display: block; }
+  .tab-page { display: none; } .tab-page.active { display: block; }
   .card { background: var(--bg); border: 0.5px solid var(--border); border-radius: var(--radius-lg); padding: 16px 20px; margin-bottom: 12px; }
   .card-title { font-size: 13px; font-weight: 500; color: var(--text2); margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
   .badge { font-size: 11px; font-weight: 500; padding: 2px 8px; border-radius: 99px; }
@@ -119,36 +117,57 @@
   .chev.open { transform: rotate(180deg); }
   .loading { text-align: center; padding: 2rem; color: var(--text3); font-size: 13px; }
   .empty { text-align: center; padding: 3rem; color: var(--text3); font-size: 13px; }
-  .chat-wrap { background: var(--bg); border: 0.5px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; display: flex; flex-direction: column; height: 600px; }
+  /* 채팅 */
+  .chat-wrap { background: var(--bg); border: 0.5px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; display: flex; flex-direction: column; height: 620px; }
   .chat-header { padding: 12px 16px; border-bottom: 0.5px solid var(--border); background: var(--bg2); display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
   .chat-header-title { font-size: 14px; font-weight: 500; }
   .chat-filter { display: flex; align-items: center; gap: 8px; }
   .chat-filter label { font-size: 12px; color: var(--text2); }
   .chat-filter select { width: auto; font-size: 12px; padding: 4px 8px; }
   .chat-refresh { font-size: 12px; color: var(--text3); cursor: pointer; background: none; border: 0.5px solid var(--border); border-radius: var(--radius); padding: 4px 10px; font-family: inherit; }
-  .chat-refresh:hover { background: var(--bg2); color: var(--text2); }
-  .chat-messages { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 12px; }
+  .chat-refresh:hover { background: var(--bg2); }
+  .chat-messages { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 10px; }
+  .chat-messages::-webkit-scrollbar { width: 4px; }
+  .chat-messages::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 99px; }
   .msg-row { display: flex; flex-direction: column; gap: 3px; }
   .msg-row.mine { align-items: flex-end; }
   .msg-row.other { align-items: flex-start; }
-  .msg-meta { font-size: 11px; color: var(--text3); display: flex; align-items: center; gap: 5px; }
+  .msg-meta { font-size: 11px; color: var(--text3); display: flex; align-items: center; gap: 5px; flex-wrap: wrap; }
   .msg-bubble { max-width: 68%; padding: 9px 13px; border-radius: 14px; font-size: 13px; line-height: 1.5; word-break: break-word; }
   .msg-row.mine .msg-bubble { background: #185FA5; color: #E6F1FB; border-bottom-right-radius: 4px; }
   .msg-row.other .msg-bubble { background: var(--bg2); color: var(--text); border-bottom-left-radius: 4px; border: 0.5px solid var(--border); }
   .msg-tag { font-size: 11px; font-weight: 500; padding: 1px 7px; border-radius: 99px; background: var(--amber-bg); color: var(--amber-text); }
   .msg-time { font-size: 11px; color: var(--text3); margin-top: 2px; }
-  .chat-input-area { border-top: 0.5px solid var(--border); padding: 12px 14px; flex-shrink: 0; background: var(--bg); }
+  /* 이미지/파일 첨부 */
+  .msg-img { max-width: 240px; max-height: 200px; border-radius: 8px; display: block; margin-top: 6px; cursor: pointer; border: 0.5px solid var(--border); }
+  .msg-file { display: inline-flex; align-items: center; gap: 8px; background: var(--bg3); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 8px 12px; margin-top: 6px; text-decoration: none; color: var(--text); font-size: 12px; max-width: 240px; }
+  .msg-file:hover { background: var(--bg2); }
+  .file-icon { font-size: 18px; flex-shrink: 0; }
+  .file-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .chat-input-area { border-top: 0.5px solid var(--border); padding: 10px 14px; flex-shrink: 0; background: var(--bg); }
   .chat-tag-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; flex-wrap: wrap; }
   .chat-tag-row label { font-size: 12px; color: var(--text2); white-space: nowrap; }
   .tag-chip { font-size: 12px; padding: 3px 10px; border-radius: 99px; border: 0.5px solid var(--border); background: transparent; cursor: pointer; font-family: inherit; color: var(--text2); }
   .tag-chip.on { background: var(--amber-bg); color: var(--amber-text); border-color: var(--amber-border); }
   .new-tag-input { width: 110px; font-size: 12px; padding: 3px 8px; border-radius: var(--radius); border: 0.5px solid var(--border); background: var(--bg2); color: var(--text); font-family: inherit; outline: none; }
   .chat-input-row { display: flex; gap: 8px; align-items: flex-end; }
-  .chat-input-row textarea { flex: 1; min-height: 40px; max-height: 120px; resize: none; padding: 9px 12px; font-size: 13px; line-height: 1.5; border-radius: var(--radius); }
+  .chat-input-row textarea { flex: 1; min-height: 40px; max-height: 100px; resize: none; padding: 9px 12px; font-size: 13px; line-height: 1.5; border-radius: var(--radius); }
+  .attach-btn { padding: 9px 12px; border-radius: var(--radius); border: 0.5px solid var(--border2); background: transparent; font-size: 18px; cursor: pointer; flex-shrink: 0; color: var(--text2); line-height: 1; }
+  .attach-btn:hover { background: var(--bg2); }
   .send-btn { padding: 9px 18px; border-radius: var(--radius); border: none; background: #185FA5; color: #E6F1FB; font-size: 13px; font-weight: 500; cursor: pointer; font-family: inherit; flex-shrink: 0; white-space: nowrap; }
   .send-btn:hover { background: #0C447C; }
   .send-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+  .attach-preview { display: none; align-items: center; gap: 8px; padding: 6px 10px; background: var(--bg2); border-radius: var(--radius); margin-bottom: 8px; font-size: 12px; color: var(--text2); }
+  .attach-preview.show { display: flex; }
+  .attach-preview-name { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .attach-remove { cursor: pointer; color: var(--text3); font-size: 16px; flex-shrink: 0; background: none; border: none; font-family: inherit; }
+  .attach-remove:hover { color: var(--red-text); }
+  .upload-progress { font-size: 12px; color: var(--text2); padding: 4px 0; display: none; }
   .chat-empty { text-align: center; color: var(--text3); font-size: 13px; padding: 2rem; }
+  /* 이미지 라이트박스 */
+  .lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 9999; align-items: center; justify-content: center; cursor: pointer; }
+  .lightbox.show { display: flex; }
+  .lightbox img { max-width: 90vw; max-height: 90vh; border-radius: 8px; }
   @media (max-width: 520px) {
     .field-row { grid-template-columns: 1fr; }
     .fb-grid { grid-template-columns: 1fr; }
@@ -159,6 +178,12 @@
 </head>
 <body>
 
+<!-- 이미지 라이트박스 -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<!-- 로그인 -->
 <div id="login-screen" class="login-wrap">
   <div class="login-card">
     <div class="login-title">업무일지</div>
@@ -180,6 +205,7 @@
   </div>
 </div>
 
+<!-- 앱 -->
 <div id="app-screen" style="display:none">
   <div class="wrap">
     <div class="app-header">
@@ -194,6 +220,7 @@
       <button class="tab-btn" id="tbtn-chat" onclick="switchTab('chat',this)">메시지</button>
     </div>
 
+    <!-- 업무일지 탭 -->
     <div id="tab-journal" class="tab-page active">
       <div id="page-staff" style="display:none">
         <div id="toast-staff" class="toast"></div>
@@ -256,6 +283,7 @@
       </div>
     </div>
 
+    <!-- 메시지 탭 -->
     <div id="tab-chat" class="tab-page">
       <div class="chat-wrap">
         <div class="chat-header">
@@ -263,9 +291,7 @@
           <div style="display:flex;align-items:center;gap:10px;">
             <div class="chat-filter">
               <label>거래처</label>
-              <select id="chat-filter-select" onchange="renderMessages()">
-                <option value="">전체</option>
-              </select>
+              <select id="chat-filter-select" onchange="renderMessages()"><option value="">전체</option></select>
             </div>
             <button class="chat-refresh" onclick="loadMessages()">새로고침</button>
           </div>
@@ -278,10 +304,18 @@
             <label>거래처 태그</label>
             <div id="tag-chips" style="display:flex;gap:6px;flex-wrap:wrap;align-items:center;"></div>
           </div>
+          <div id="attach-preview" class="attach-preview">
+            <span style="font-size:16px" id="attach-preview-icon">📎</span>
+            <span class="attach-preview-name" id="attach-preview-name"></span>
+            <button class="attach-remove" onclick="removeAttach()">✕</button>
+          </div>
+          <div id="upload-progress" class="upload-progress">업로드 중...</div>
           <div class="chat-input-row">
-            <textarea id="chat-input" placeholder="메시지를 입력하세요... (Enter: 전송, Shift+Enter: 줄바꿈)" rows="1"
+            <button class="attach-btn" onclick="document.getElementById('file-input').click()" title="파일 첨부">📎</button>
+            <input type="file" id="file-input" style="display:none" accept="image/*,.pdf,.xlsx,.xls,.docx,.doc,.pptx,.ppt,.txt,.zip" onchange="onFileSelected(this)">
+            <textarea id="chat-input" placeholder="메시지 입력 (Enter: 전송, Shift+Enter: 줄바꿈)" rows="1"
               onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendMessage();}"
-              oninput="this.style.height='auto';this.style.height=Math.min(this.scrollHeight,120)+'px'"></textarea>
+              oninput="this.style.height='auto';this.style.height=Math.min(this.scrollHeight,100)+'px'"></textarea>
             <button class="send-btn" id="send-btn" onclick="sendMessage()">전송</button>
           </div>
         </div>
@@ -297,17 +331,16 @@ const ADMIN_PW = 'dbwls0307';
 
 let db, currentRole = '', currentName = '', mood = '';
 let allMessages = [], selectedTag = '';
-let pollTimer = null;
+let pollTimer = null, pendingFile = null;
 
 window.addEventListener('load', function() {
   try {
     const { createClient } = window.supabase;
     db = createClient(SUPA_URL, SUPA_KEY);
-  } catch(e) {
-    alert('Supabase 연결 오류: ' + e.message);
-  }
+  } catch(e) { alert('Supabase 연결 오류: ' + e.message); }
 });
 
+// ── 로그인 ──
 function selectRole(role) {
   currentRole = role;
   document.getElementById('role-staff').classList.toggle('selected', role === 'staff');
@@ -355,7 +388,7 @@ function enterApp() {
 
 function doLogout() {
   if (pollTimer) { clearInterval(pollTimer); pollTimer = null; }
-  currentRole = ''; currentName = ''; mood = ''; allMessages = []; selectedTag = '';
+  currentRole = ''; currentName = ''; mood = ''; allMessages = []; selectedTag = ''; pendingFile = null;
   document.getElementById('login-screen').style.display = 'block';
   document.getElementById('app-screen').style.display = 'none';
   document.getElementById('login-name').value = '';
@@ -383,6 +416,7 @@ function switchTabDirect(name) {
   document.getElementById('tab-' + name).classList.add('active');
 }
 
+// ── 업무일지 ──
 function initStaffForm() {
   ['done-body','issue-body','todo-body'].forEach(id => document.getElementById(id).innerHTML = '');
   addRow('done-body','done'); addRow('issue-body','issue'); addRow('todo-body','todo');
@@ -414,9 +448,9 @@ function getRows(tbodyId) {
   return rows;
 }
 
-function showToast(id, msg, type = 'success') {
+function showToast(id, msg, type) {
   const t = document.getElementById(id);
-  t.textContent = msg; t.className = 'toast ' + type; t.style.display = 'block';
+  t.textContent = msg; t.className = 'toast ' + (type || 'success'); t.style.display = 'block';
   setTimeout(() => t.style.display = 'none', 3500);
 }
 
@@ -472,6 +506,34 @@ function toggleCard(i) {
 
 function clearDate() { document.getElementById('admin-date').value = ''; loadAdmin(); }
 
+// ── 파일 첨부 ──
+function onFileSelected(input) {
+  const file = input.files[0];
+  if (!file) return;
+  if (file.size > 10 * 1024 * 1024) { alert('파일 크기는 10MB 이하만 가능합니다.'); input.value = ''; return; }
+  pendingFile = file;
+  const icon = file.type.startsWith('image/') ? '🖼️' : file.type === 'application/pdf' ? '📄' : '📎';
+  document.getElementById('attach-preview-icon').textContent = icon;
+  document.getElementById('attach-preview-name').textContent = file.name;
+  document.getElementById('attach-preview').classList.add('show');
+  input.value = '';
+}
+
+function removeAttach() {
+  pendingFile = null;
+  document.getElementById('attach-preview').classList.remove('show');
+}
+
+async function uploadFile(file) {
+  const ext = file.name.split('.').pop();
+  const path = `${Date.now()}_${Math.random().toString(36).slice(2)}.${ext}`;
+  const { error } = await db.storage.from('attachments').upload(path, file, { contentType: file.type });
+  if (error) throw error;
+  const { data } = db.storage.from('attachments').getPublicUrl(path);
+  return { url: data.publicUrl, name: file.name, type: file.type };
+}
+
+// ── 메시지 ──
 async function loadMessages() {
   try {
     const { data, error } = await db.from('messages').select('*').order('created_at', { ascending: true });
@@ -489,7 +551,6 @@ function updateTagOptions() {
   const cur = sel.value;
   sel.innerHTML = '<option value="">전체</option>' + tags.map(t => `<option value="${t}">${t}</option>`).join('');
   if (cur) sel.value = cur;
-
   const chips = document.getElementById('tag-chips');
   let html = tags.map(t => `<button class="tag-chip${selectedTag===t?' on':''}" onclick="toggleTag('${t}',this)">${t}</button>`).join('');
   html += `<button class="tag-chip${selectedTag==='__new__'?' on':''}" onclick="toggleTag('__new__',this)">+ 새 거래처</button>`;
@@ -519,10 +580,21 @@ function renderMessages() {
     const timeStr = d.toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit' });
     const tagHtml = m.client_tag ? `<span class="msg-tag">${m.client_tag}</span>` : '';
     const roleBadge = m.role === 'admin' ? `<span class="badge b-blue" style="font-size:10px">관리자</span>` : '';
+
+    let attachHtml = '';
+    if (m.file_url && m.file_type && m.file_type.startsWith('image/')) {
+      attachHtml = `<img class="msg-img" src="${m.file_url}" alt="${escHtml(m.file_name||'이미지')}" onclick="openLightbox('${m.file_url}')">`;
+    } else if (m.file_url) {
+      const ficon = m.file_type === 'application/pdf' ? '📄' : '📎';
+      attachHtml = `<a class="msg-file" href="${m.file_url}" target="_blank" rel="noopener"><span class="file-icon">${ficon}</span><span class="file-name">${escHtml(m.file_name||'파일')}</span></a>`;
+    }
+
+    const bubbleContent = (m.content ? escHtml(m.content) : '') + attachHtml;
+
     if (isMine) {
-      html += `<div class="msg-row mine"><div class="msg-meta">${tagHtml}</div><div class="msg-bubble">${escHtml(m.content)}</div><div class="msg-time">${timeStr}</div></div>`;
+      html += `<div class="msg-row mine"><div class="msg-meta">${tagHtml}</div><div class="msg-bubble">${bubbleContent}</div><div class="msg-time">${timeStr}</div></div>`;
     } else {
-      html += `<div class="msg-row other"><div class="msg-meta">${roleBadge}<strong style="font-size:12px">${escHtml(m.sender)}</strong>${tagHtml}</div><div class="msg-bubble">${escHtml(m.content)}</div><div class="msg-time">${timeStr}</div></div>`;
+      html += `<div class="msg-row other"><div class="msg-meta">${roleBadge}<strong style="font-size:12px">${escHtml(m.sender)}</strong>${tagHtml}</div><div class="msg-bubble">${bubbleContent}</div><div class="msg-time">${timeStr}</div></div>`;
     }
   });
   container.innerHTML = html;
@@ -536,30 +608,57 @@ function scrollChat() {
 async function sendMessage() {
   const input = document.getElementById('chat-input');
   const content = input.value.trim();
-  if (!content) return;
+  if (!content && !pendingFile) return;
+
   let tag = '';
-  if (selectedTag && selectedTag !== '__new__') {
-    tag = selectedTag;
-  } else if (selectedTag === '__new__') {
-    const ni = document.getElementById('new-tag-input');
-    tag = ni ? ni.value.trim() : '';
-  }
+  if (selectedTag && selectedTag !== '__new__') tag = selectedTag;
+  else if (selectedTag === '__new__') { const ni = document.getElementById('new-tag-input'); tag = ni ? ni.value.trim() : ''; }
+
   const btn = document.getElementById('send-btn');
   btn.disabled = true;
+
+  let fileData = {};
+  if (pendingFile) {
+    document.getElementById('upload-progress').style.display = 'block';
+    try {
+      const result = await uploadFile(pendingFile);
+      fileData = { file_url: result.url, file_name: result.name, file_type: result.type };
+    } catch(e) {
+      alert('파일 업로드 오류: ' + e.message);
+      document.getElementById('upload-progress').style.display = 'none';
+      btn.disabled = false;
+      return;
+    }
+    document.getElementById('upload-progress').style.display = 'none';
+  }
+
   try {
-    const { error } = await db.from('messages').insert({ sender: currentName, role: currentRole, content, client_tag: tag || null });
+    const { error } = await db.from('messages').insert({
+      sender: currentName, role: currentRole,
+      content: content || null,
+      client_tag: tag || null,
+      ...fileData
+    });
     if (!error) {
       input.value = ''; input.style.height = 'auto';
+      pendingFile = null;
+      document.getElementById('attach-preview').classList.remove('show');
       selectedTag = '';
       await loadMessages();
       scrollChat();
-    } else {
-      alert('전송 오류: ' + error.message);
-    }
-  } catch(e) {
-    alert('전송 중 오류가 발생했습니다.');
-  }
+    } else { alert('전송 오류: ' + error.message); }
+  } catch(e) { alert('전송 중 오류가 발생했습니다.'); }
   btn.disabled = false;
+}
+
+function openLightbox(url) {
+  document.getElementById('lightbox-img').src = url;
+  document.getElementById('lightbox').classList.add('show');
+}
+
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('show');
+  document.getElementById('lightbox-img').src = '';
 }
 
 function escHtml(str) {
