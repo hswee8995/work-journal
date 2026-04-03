@@ -33,9 +33,9 @@
     }
   }
   body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg3); color: var(--text); font-size: 14px; min-height: 100vh; }
-  .wrap { max-width: 780px; margin: 0 auto; padding: 24px 16px; }
+  .wrap { max-width: 860px; margin: 0 auto; padding: 24px 16px; }
 
-  /* 로그인 화면 */
+  /* 로그인 */
   .login-wrap { max-width: 400px; margin: 80px auto; padding: 0 16px; }
   .login-card { background: var(--bg); border: 0.5px solid var(--border); border-radius: var(--radius-lg); padding: 32px 28px; }
   .login-title { font-size: 18px; font-weight: 500; margin-bottom: 6px; }
@@ -52,16 +52,23 @@
   .login-err { font-size: 12px; color: var(--red-text); background: var(--red-bg); border: 0.5px solid var(--red-border); border-radius: var(--radius); padding: 8px 12px; margin-bottom: 12px; display: none; }
   .login-btn { width: 100%; padding: 11px; border-radius: var(--radius); border: none; background: #185FA5; color: #E6F1FB; font-size: 14px; font-weight: 500; cursor: pointer; font-family: inherit; transition: background 0.15s; }
   .login-btn:hover { background: #0C447C; }
-  .login-btn:disabled { opacity: 0.5; cursor: not-allowed; }
 
-  /* 앱 상단 */
-  .app-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+  /* 앱 헤더 */
+  .app-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
   .app-header-left { display: flex; align-items: center; gap: 10px; }
   .app-title { font-size: 15px; font-weight: 500; }
   .app-role { font-size: 12px; color: var(--text2); background: var(--bg2); border: 0.5px solid var(--border); border-radius: 99px; padding: 3px 10px; }
   .logout-btn { font-size: 12px; color: var(--text3); cursor: pointer; background: none; border: none; font-family: inherit; padding: 4px 8px; border-radius: var(--radius); }
   .logout-btn:hover { color: var(--text2); background: var(--bg2); }
 
+  /* 탭 */
+  .tab-nav { display: flex; gap: 4px; margin-bottom: 16px; background: var(--bg); border: 0.5px solid var(--border); border-radius: var(--radius-lg); padding: 5px; }
+  .tab-btn { flex: 1; padding: 8px; border-radius: var(--radius); border: none; background: transparent; font-size: 13px; font-weight: 500; cursor: pointer; color: var(--text2); font-family: inherit; transition: all 0.15s; }
+  .tab-btn.active { background: var(--bg3); color: var(--text); }
+  .tab-page { display: none; }
+  .tab-page.active { display: block; }
+
+  /* 공통 */
   .card { background: var(--bg); border: 0.5px solid var(--border); border-radius: var(--radius-lg); padding: 16px 20px; margin-bottom: 12px; }
   .card-title { font-size: 13px; font-weight: 500; color: var(--text2); margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
   .badge { font-size: 11px; font-weight: 500; padding: 2px 8px; border-radius: 99px; }
@@ -71,6 +78,7 @@
   .b-purple { background: var(--purple-bg); color: var(--purple-text); }
   .b-green { background: var(--green-bg); color: var(--green-text); }
   .b-red { background: var(--red-bg); color: var(--red-text); }
+  .b-gray { background: var(--bg2); color: var(--text2); }
   .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
   .field { display: flex; flex-direction: column; gap: 4px; }
   .field label { font-size: 12px; color: var(--text2); }
@@ -122,16 +130,51 @@
   .chev.open { transform: rotate(180deg); }
   .loading { text-align: center; padding: 2rem; color: var(--text3); font-size: 13px; }
   .empty { text-align: center; padding: 3rem; color: var(--text3); font-size: 13px; }
+
+  /* 채팅 */
+  .chat-wrap { background: var(--bg); border: 0.5px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; display: flex; flex-direction: column; height: 620px; }
+  .chat-header { padding: 12px 16px; border-bottom: 0.5px solid var(--border); background: var(--bg2); display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
+  .chat-header-title { font-size: 14px; font-weight: 500; }
+  .chat-filter { display: flex; align-items: center; gap: 8px; }
+  .chat-filter label { font-size: 12px; color: var(--text2); }
+  .chat-filter select { width: auto; font-size: 12px; padding: 4px 8px; }
+  .chat-messages { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 12px; }
+  .chat-messages::-webkit-scrollbar { width: 4px; }
+  .chat-messages::-webkit-scrollbar-track { background: transparent; }
+  .chat-messages::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 99px; }
+  .msg-row { display: flex; flex-direction: column; gap: 3px; }
+  .msg-row.mine { align-items: flex-end; }
+  .msg-row.other { align-items: flex-start; }
+  .msg-meta { font-size: 11px; color: var(--text3); display: flex; align-items: center; gap: 5px; }
+  .msg-bubble { max-width: 68%; padding: 9px 13px; border-radius: 14px; font-size: 13px; line-height: 1.5; word-break: break-word; }
+  .msg-row.mine .msg-bubble { background: #185FA5; color: #E6F1FB; border-bottom-right-radius: 4px; }
+  .msg-row.other .msg-bubble { background: var(--bg2); color: var(--text); border-bottom-left-radius: 4px; border: 0.5px solid var(--border); }
+  .msg-tag { font-size: 11px; font-weight: 500; padding: 1px 7px; border-radius: 99px; background: var(--amber-bg); color: var(--amber-text); }
+  .msg-time { font-size: 11px; color: var(--text3); margin-top: 2px; }
+  .chat-input-area { border-top: 0.5px solid var(--border); padding: 12px 14px; flex-shrink: 0; background: var(--bg); }
+  .chat-tag-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; flex-wrap: wrap; }
+  .chat-tag-row label { font-size: 12px; color: var(--text2); }
+  .tag-chip { font-size: 12px; padding: 3px 10px; border-radius: 99px; border: 0.5px solid var(--border); background: transparent; cursor: pointer; font-family: inherit; color: var(--text2); transition: all 0.15s; }
+  .tag-chip.on { background: var(--amber-bg); color: var(--amber-text); border-color: var(--amber-border); }
+  .chat-input-row { display: flex; gap: 8px; align-items: flex-end; }
+  .chat-input-row textarea { flex: 1; min-height: 40px; max-height: 120px; resize: none; padding: 9px 12px; font-size: 13px; line-height: 1.5; border-radius: var(--radius); }
+  .send-btn { padding: 9px 18px; border-radius: var(--radius); border: none; background: #185FA5; color: #E6F1FB; font-size: 13px; font-weight: 500; cursor: pointer; font-family: inherit; flex-shrink: 0; transition: background 0.15s; white-space: nowrap; }
+  .send-btn:hover { background: #0C447C; }
+  .send-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+  .chat-empty { text-align: center; color: var(--text3); font-size: 13px; padding: 2rem; }
+  .unread-dot { width: 7px; height: 7px; border-radius: 50%; background: #E24B4A; display: inline-block; margin-left: 4px; vertical-align: middle; }
+
   @media (max-width: 520px) {
     .field-row { grid-template-columns: 1fr; }
     .fb-grid { grid-template-columns: 1fr; }
     .fb-view { grid-template-columns: 1fr; }
+    .msg-bubble { max-width: 85%; }
   }
 </style>
 </head>
 <body>
 
-<!-- 로그인 화면 -->
+<!-- 로그인 -->
 <div id="login-screen" class="login-wrap">
   <div class="login-card">
     <div class="login-title">업무일지</div>
@@ -157,7 +200,7 @@
   </div>
 </div>
 
-<!-- 앱 화면 -->
+<!-- 앱 -->
 <div id="app-screen" style="display:none">
   <div class="wrap">
     <div class="app-header">
@@ -168,80 +211,109 @@
       <button class="logout-btn" onclick="doLogout()">로그아웃</button>
     </div>
 
-    <!-- 직원 페이지 -->
-    <div id="page-staff" style="display:none">
-      <div id="toast-staff" class="toast"></div>
-      <div class="card">
-        <div class="card-title">기본 정보</div>
-        <div class="field-row">
-          <div class="field"><label>작성자 이름</label><input type="text" id="s-name" readonly style="opacity:0.7;cursor:default"></div>
-          <div class="field"><label>날짜</label><input type="date" id="s-date"></div>
+    <div class="tab-nav" id="tab-nav">
+      <button class="tab-btn active" onclick="switchTab('journal', this)" id="tab-journal">업무일지</button>
+      <button class="tab-btn" onclick="switchTab('chat', this)" id="tab-chat">메시지 <span id="unread-indicator" style="display:none" class="unread-dot"></span></button>
+    </div>
+
+    <!-- 업무일지 탭 -->
+    <div id="tab-journal" class="tab-page active">
+
+      <!-- 직원: 작성 -->
+      <div id="page-staff" style="display:none">
+        <div id="toast-staff" class="toast"></div>
+        <div class="card">
+          <div class="card-title">기본 정보</div>
+          <div class="field-row">
+            <div class="field"><label>작성자 이름</label><input type="text" id="s-name" readonly style="opacity:0.7;cursor:default"></div>
+            <div class="field"><label>날짜</label><input type="date" id="s-date"></div>
+          </div>
+          <div class="field"><label>담당 클라이언트</label><input type="text" id="s-client" placeholder="예) (주)한국산업"></div>
         </div>
-        <div class="field"><label>담당 클라이언트</label><input type="text" id="s-client" placeholder="예) (주)한국산업"></div>
-      </div>
-
-      <div class="card">
-        <div class="card-title"><span class="badge b-blue">1</span> 오늘 완료한 일</div>
-        <table class="task-table">
-          <thead><tr><th style="width:42%">업무 내용</th><th>세부 처리 결과</th><th style="width:72px">상태</th></tr></thead>
-          <tbody id="done-body"></tbody>
-        </table>
-        <span class="add-row" onclick="addRow('done-body','done')">+ 행 추가</span>
-      </div>
-
-      <div class="card">
-        <div class="card-title"><span class="badge b-amber">2</span> 발생한 이슈 &amp; 해결 방안</div>
-        <table class="task-table">
-          <thead><tr><th style="width:42%">이슈 내용</th><th>해결 방안 / 현재 상태</th><th style="width:72px">처리</th></tr></thead>
-          <tbody id="issue-body"></tbody>
-        </table>
-        <span class="add-row" onclick="addRow('issue-body','issue')">+ 행 추가</span>
-      </div>
-
-      <div class="card">
-        <div class="card-title"><span class="badge b-teal">3</span> 내일 할 일</div>
-        <table class="task-table">
-          <thead><tr><th style="width:42%">예정 업무</th><th>참고 사항</th><th style="width:72px">우선순위</th></tr></thead>
-          <tbody id="todo-body"></tbody>
-        </table>
-        <span class="add-row" onclick="addRow('todo-body','todo')">+ 행 추가</span>
-      </div>
-
-      <div class="card">
-        <div class="card-title"><span class="badge b-purple">4</span> 스스로에 대한 피드백</div>
-        <div class="fb-grid">
-          <div class="field"><label>잘한 점</label><textarea id="fb-good" placeholder="예) 마감 전 오류 사전 발견"></textarea></div>
-          <div class="field"><label>개선할 점</label><textarea id="fb-improve" placeholder="예) 이슈 보고 타이밍 개선 필요"></textarea></div>
-          <div class="field"><label>내일 집중할 목표</label><textarea id="fb-goal" placeholder="예) 오전 중 전표 입력 완료"></textarea></div>
-          <div class="field">
-            <label>오늘 업무 만족도</label>
-            <div class="mood-row">
-              <button class="mood-btn" onclick="setMood(this,'좋음')">😊 좋음</button>
-              <button class="mood-btn" onclick="setMood(this,'보통')">😐 보통</button>
-              <button class="mood-btn" onclick="setMood(this,'힘듦')">😔 힘듦</button>
+        <div class="card">
+          <div class="card-title"><span class="badge b-blue">1</span> 오늘 완료한 일</div>
+          <table class="task-table"><thead><tr><th style="width:42%">업무 내용</th><th>세부 처리 결과</th><th style="width:72px">상태</th></tr></thead><tbody id="done-body"></tbody></table>
+          <span class="add-row" onclick="addRow('done-body','done')">+ 행 추가</span>
+        </div>
+        <div class="card">
+          <div class="card-title"><span class="badge b-amber">2</span> 발생한 이슈 &amp; 해결 방안</div>
+          <table class="task-table"><thead><tr><th style="width:42%">이슈 내용</th><th>해결 방안 / 현재 상태</th><th style="width:72px">처리</th></tr></thead><tbody id="issue-body"></tbody></table>
+          <span class="add-row" onclick="addRow('issue-body','issue')">+ 행 추가</span>
+        </div>
+        <div class="card">
+          <div class="card-title"><span class="badge b-teal">3</span> 내일 할 일</div>
+          <table class="task-table"><thead><tr><th style="width:42%">예정 업무</th><th>참고 사항</th><th style="width:72px">우선순위</th></tr></thead><tbody id="todo-body"></tbody></table>
+          <span class="add-row" onclick="addRow('todo-body','todo')">+ 행 추가</span>
+        </div>
+        <div class="card">
+          <div class="card-title"><span class="badge b-purple">4</span> 스스로에 대한 피드백</div>
+          <div class="fb-grid">
+            <div class="field"><label>잘한 점</label><textarea id="fb-good" placeholder="예) 마감 전 오류 사전 발견"></textarea></div>
+            <div class="field"><label>개선할 점</label><textarea id="fb-improve" placeholder="예) 이슈 보고 타이밍 개선 필요"></textarea></div>
+            <div class="field"><label>내일 집중할 목표</label><textarea id="fb-goal" placeholder="예) 오전 중 전표 입력 완료"></textarea></div>
+            <div class="field">
+              <label>오늘 업무 만족도</label>
+              <div class="mood-row">
+                <button class="mood-btn" onclick="setMood(this,'좋음')">😊 좋음</button>
+                <button class="mood-btn" onclick="setMood(this,'보통')">😐 보통</button>
+                <button class="mood-btn" onclick="setMood(this,'힘듦')">😔 힘듦</button>
+              </div>
             </div>
           </div>
         </div>
+        <div class="submit-row">
+          <button class="btn btn-primary" id="submit-btn" onclick="submitJournal()">업무일지 제출</button>
+        </div>
       </div>
-      <div class="submit-row">
-        <button class="btn btn-primary" id="submit-btn" onclick="submitJournal()">업무일지 제출</button>
+
+      <!-- 관리자: 보고 확인 -->
+      <div id="page-admin" style="display:none">
+        <div id="toast-admin" class="toast"></div>
+        <div class="admin-meta">
+          <input type="date" id="admin-date" style="width:160px;" oninput="loadAdmin()">
+          <button class="btn" onclick="clearDate()">전체 보기</button>
+        </div>
+        <div class="stat-grid">
+          <div class="stat"><div class="stat-label">조회된 일지</div><div class="stat-val" id="st-total">—</div></div>
+          <div class="stat"><div class="stat-label">진행중 이슈</div><div class="stat-val" id="st-issues">—</div></div>
+          <div class="stat"><div class="stat-label">오늘 제출</div><div class="stat-val" id="st-today">—</div></div>
+        </div>
+        <div id="admin-list"><div class="loading">불러오는 중...</div></div>
+      </div>
+
+    </div>
+
+    <!-- 메시지 탭 -->
+    <div id="tab-chat" class="tab-page">
+      <div class="chat-wrap">
+        <div class="chat-header">
+          <div class="chat-header-title">전체 메시지</div>
+          <div class="chat-filter">
+            <label>거래처 필터</label>
+            <select id="chat-filter-select" onchange="filterMessages()">
+              <option value="">전체</option>
+            </select>
+          </div>
+        </div>
+        <div class="chat-messages" id="chat-messages">
+          <div class="chat-empty">대화를 시작해보세요</div>
+        </div>
+        <div class="chat-input-area">
+          <div class="chat-tag-row">
+            <label>거래처 태그</label>
+            <div id="tag-chips"></div>
+            <span style="font-size:11px;color:var(--text3)">(선택사항)</span>
+          </div>
+          <div class="chat-input-row">
+            <textarea id="chat-input" placeholder="메시지를 입력하세요..." rows="1"
+              onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendMessage();}"
+              oninput="autoResize(this)"></textarea>
+            <button class="send-btn" id="send-btn" onclick="sendMessage()">전송</button>
+          </div>
+        </div>
       </div>
     </div>
 
-    <!-- 관리자 페이지 -->
-    <div id="page-admin" style="display:none">
-      <div id="toast-admin" class="toast"></div>
-      <div class="admin-meta">
-        <input type="date" id="admin-date" style="width:160px;" oninput="loadAdmin()">
-        <button class="btn" onclick="clearDate()">전체 보기</button>
-      </div>
-      <div class="stat-grid">
-        <div class="stat"><div class="stat-label">조회된 일지</div><div class="stat-val" id="st-total">—</div></div>
-        <div class="stat"><div class="stat-label">진행중 이슈</div><div class="stat-val" id="st-issues">—</div></div>
-        <div class="stat"><div class="stat-label">오늘 제출</div><div class="stat-val" id="st-today">—</div></div>
-      </div>
-      <div id="admin-list"><div class="loading">불러오는 중...</div></div>
-    </div>
   </div>
 </div>
 
@@ -252,10 +324,11 @@ const ADMIN_PW = 'dbwls0307';
 const { createClient } = supabase;
 const db = createClient(SUPA_URL, SUPA_KEY);
 
-let currentRole = '';
-let currentName = '';
-let mood = '';
+let currentRole = '', currentName = '', mood = '';
+let allMessages = [], selectedTag = '', lastSeenId = 0;
+let chatSubscription = null;
 
+// ── 로그인 ──────────────────────────────────────
 function selectRole(role) {
   currentRole = role;
   document.getElementById('role-staff').classList.toggle('selected', role === 'staff');
@@ -263,71 +336,82 @@ function selectRole(role) {
   document.getElementById('field-name').style.display = role === 'staff' ? 'block' : 'none';
   document.getElementById('field-pw').style.display = role === 'admin' ? 'block' : 'none';
   document.getElementById('login-err').style.display = 'none';
-  if (role === 'staff') document.getElementById('login-name').focus();
-  else document.getElementById('login-pw').focus();
+  setTimeout(() => document.getElementById(role === 'staff' ? 'login-name' : 'login-pw').focus(), 50);
 }
 
 function doLogin() {
-  const err = document.getElementById('login-err');
-  err.style.display = 'none';
-  if (!currentRole) { showErr('역할을 선택해주세요.'); return; }
+  if (!currentRole) { showLoginErr('역할을 선택해주세요.'); return; }
   if (currentRole === 'staff') {
     const name = document.getElementById('login-name').value.trim();
-    if (!name) { showErr('이름을 입력해주세요.'); return; }
+    if (!name) { showLoginErr('이름을 입력해주세요.'); return; }
     currentName = name;
-    enterApp('staff');
   } else {
-    const pw = document.getElementById('login-pw').value;
-    if (pw !== ADMIN_PW) { showErr('비밀번호가 올바르지 않습니다.'); return; }
+    if (document.getElementById('login-pw').value !== ADMIN_PW) { showLoginErr('비밀번호가 올바르지 않습니다.'); return; }
     currentName = '관리자';
-    enterApp('admin');
   }
+  enterApp();
 }
 
-function showErr(msg) {
-  const err = document.getElementById('login-err');
-  err.textContent = msg;
-  err.style.display = 'block';
+function showLoginErr(msg) {
+  const el = document.getElementById('login-err');
+  el.textContent = msg; el.style.display = 'block';
 }
 
-function enterApp(role) {
+function enterApp() {
   document.getElementById('login-screen').style.display = 'none';
   document.getElementById('app-screen').style.display = 'block';
-  document.getElementById('app-role-badge').textContent = role === 'admin' ? '관리자' : currentName + ' (직원)';
-  if (role === 'staff') {
-    document.getElementById('page-staff').style.display = 'block';
-    document.getElementById('page-admin').style.display = 'none';
-    document.getElementById('s-name').value = currentName;
-    document.getElementById('s-date').value = today();
-    initStaffForm();
-  } else {
-    document.getElementById('page-admin').style.display = 'block';
-    document.getElementById('page-staff').style.display = 'none';
-    document.getElementById('admin-date').value = today();
-    loadAdmin();
-  }
+  document.getElementById('app-role-badge').textContent = currentRole === 'admin' ? '관리자' : currentName + ' (직원)';
+  document.getElementById('page-staff').style.display = currentRole === 'staff' ? 'block' : 'none';
+  document.getElementById('page-admin').style.display = currentRole === 'admin' ? 'block' : 'none';
+  if (currentRole === 'staff') { document.getElementById('s-name').value = currentName; document.getElementById('s-date').value = today(); initStaffForm(); }
+  else { document.getElementById('admin-date').value = today(); loadAdmin(); }
+  initChat();
 }
 
 function doLogout() {
-  currentRole = ''; currentName = ''; mood = '';
+  if (chatSubscription) { chatSubscription.unsubscribe(); chatSubscription = null; }
+  currentRole = ''; currentName = ''; mood = ''; allMessages = []; selectedTag = ''; lastSeenId = 0;
   document.getElementById('login-screen').style.display = 'block';
   document.getElementById('app-screen').style.display = 'none';
   document.getElementById('login-name').value = '';
   document.getElementById('login-pw').value = '';
   document.getElementById('login-err').style.display = 'none';
-  document.getElementById('role-staff').classList.remove('selected');
-  document.getElementById('role-admin').classList.remove('selected');
+  ['role-staff','role-admin'].forEach(id => document.getElementById(id).classList.remove('selected'));
   document.getElementById('field-name').style.display = 'block';
   document.getElementById('field-pw').style.display = 'none';
   currentRole = '';
+  switchTabTo('journal');
 }
 
+// ── 탭 ──────────────────────────────────────────
+function switchTab(name, btn) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-page').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('tab-' + name).classList.add('active');
+  if (name === 'chat') {
+    document.getElementById('unread-indicator').style.display = 'none';
+    lastSeenId = allMessages.length ? Math.max(...allMessages.map(m => m.id)) : 0;
+    scrollChat();
+  }
+}
+
+function switchTabTo(name) {
+  const btns = document.querySelectorAll('.tab-btn');
+  const pages = document.querySelectorAll('.tab-page');
+  btns.forEach(b => b.classList.remove('active'));
+  pages.forEach(p => p.classList.remove('active'));
+  const idx = name === 'journal' ? 0 : 1;
+  btns[idx].classList.add('active');
+  pages[idx].classList.add('active');
+}
+
+// ── 업무일지 ─────────────────────────────────────
 function initStaffForm() {
-  ['done-body','issue-body','todo-body'].forEach(id => document.getElementById(id).innerHTML = '');
+  ['done-body','issue-body','todo-body'].forEach(id => { document.getElementById(id).innerHTML = ''; });
   addRow('done-body','done'); addRow('issue-body','issue'); addRow('todo-body','todo');
   ['fb-good','fb-improve','fb-goal'].forEach(id => document.getElementById(id).value = '');
-  mood = '';
-  document.querySelectorAll('.mood-btn').forEach(b => b.classList.remove('on'));
+  mood = ''; document.querySelectorAll('.mood-btn').forEach(b => b.classList.remove('on'));
 }
 
 function setMood(btn, val) {
@@ -339,13 +423,9 @@ function setMood(btn, val) {
 function addRow(tbodyId, type) {
   const tbody = document.getElementById(tbodyId);
   const tr = document.createElement('tr');
-  if (type === 'done') {
-    tr.innerHTML = `<td><input type="text" placeholder="업무명"></td><td><input type="text" placeholder="처리 결과"></td><td><select><option>완료</option><option>진행중</option></select></td>`;
-  } else if (type === 'issue') {
-    tr.innerHTML = `<td><input type="text" placeholder="이슈 내용"></td><td><input type="text" placeholder="해결 방안"></td><td><select><option>해결</option><option>진행중</option><option>미해결</option></select></td>`;
-  } else {
-    tr.innerHTML = `<td><input type="text" placeholder="예정 업무"></td><td><input type="text" placeholder="참고 사항"></td><td><select><option>높음</option><option>보통</option><option>낮음</option></select></td>`;
-  }
+  if (type === 'done') tr.innerHTML = `<td><input type="text" placeholder="업무명"></td><td><input type="text" placeholder="처리 결과"></td><td><select><option>완료</option><option>진행중</option></select></td>`;
+  else if (type === 'issue') tr.innerHTML = `<td><input type="text" placeholder="이슈 내용"></td><td><input type="text" placeholder="해결 방안"></td><td><select><option>해결</option><option>진행중</option><option>미해결</option></select></td>`;
+  else tr.innerHTML = `<td><input type="text" placeholder="예정 업무"></td><td><input type="text" placeholder="참고 사항"></td><td><select><option>높음</option><option>보통</option><option>낮음</option></select></td>`;
   tbody.appendChild(tr);
 }
 
@@ -353,42 +433,30 @@ function getRows(tbodyId) {
   const rows = [];
   document.querySelectorAll('#' + tbodyId + ' tr').forEach(tr => {
     const inputs = tr.querySelectorAll('input, select');
-    if (inputs[0] && inputs[0].value.trim()) {
-      rows.push({ a: inputs[0].value, b: inputs[1] ? inputs[1].value : '', c: inputs[2] ? inputs[2].value : '' });
-    }
+    if (inputs[0] && inputs[0].value.trim()) rows.push({ a: inputs[0].value, b: inputs[1] ? inputs[1].value : '', c: inputs[2] ? inputs[2].value : '' });
   });
   return rows;
 }
 
 function showToast(id, msg, type = 'success') {
   const t = document.getElementById(id);
-  t.textContent = msg;
-  t.className = 'toast ' + type;
-  t.style.display = 'block';
+  t.textContent = msg; t.className = 'toast ' + type; t.style.display = 'block';
   setTimeout(() => t.style.display = 'none', 3500);
 }
 
 async function submitJournal() {
   const date = document.getElementById('s-date').value;
-  const client = document.getElementById('s-client').value.trim();
   if (!date) { showToast('toast-staff', '날짜를 입력해주세요.', 'error'); return; }
   const btn = document.getElementById('submit-btn');
   btn.disabled = true; btn.textContent = '제출 중...';
   const { error } = await db.from('journals').insert({
-    name: currentName, date, client,
-    done: getRows('done-body'),
-    issues: getRows('issue-body'),
-    todos: getRows('todo-body'),
-    feedback: {
-      good: document.getElementById('fb-good').value,
-      improve: document.getElementById('fb-improve').value,
-      goal: document.getElementById('fb-goal').value,
-      mood
-    }
+    name: currentName, date, client: document.getElementById('s-client').value.trim(),
+    done: getRows('done-body'), issues: getRows('issue-body'), todos: getRows('todo-body'),
+    feedback: { good: document.getElementById('fb-good').value, improve: document.getElementById('fb-improve').value, goal: document.getElementById('fb-goal').value, mood }
   });
   btn.disabled = false; btn.textContent = '업무일지 제출';
-  if (error) { showToast('toast-staff', '저장 중 오류: ' + error.message, 'error'); return; }
-  showToast('toast-staff', '업무일지가 성공적으로 제출되었습니다.');
+  if (error) { showToast('toast-staff', '저장 오류: ' + error.message, 'error'); return; }
+  showToast('toast-staff', '업무일지가 제출되었습니다.');
   initStaffForm();
   document.getElementById('s-date').value = today();
   document.getElementById('s-client').value = '';
@@ -403,48 +471,21 @@ async function loadAdmin() {
   let query = db.from('journals').select('*').order('date', { ascending: false }).order('created_at', { ascending: false });
   if (filterDate) query = query.eq('date', filterDate);
   const { data, error } = await query;
-  if (error) { list.innerHTML = '<div class="empty">데이터를 불러오지 못했습니다.</div>'; return; }
+  if (error) { list.innerHTML = '<div class="empty">불러오지 못했습니다.</div>'; return; }
   const todayStr = today();
-  const todayCount = data.filter(j => j.date === todayStr).length;
-  const issueCount = data.reduce((acc, j) => acc + (j.issues || []).filter(i => i.c === '진행중' || i.c === '미해결').length, 0);
   document.getElementById('st-total').textContent = data.length;
-  document.getElementById('st-issues').textContent = issueCount;
-  document.getElementById('st-today').textContent = todayCount;
-  if (data.length === 0) { list.innerHTML = '<div class="empty">제출된 업무일지가 없습니다.</div>'; return; }
+  document.getElementById('st-issues').textContent = data.reduce((acc, j) => acc + (j.issues || []).filter(i => i.c === '진행중' || i.c === '미해결').length, 0);
+  document.getElementById('st-today').textContent = data.filter(j => j.date === todayStr).length;
+  if (!data.length) { list.innerHTML = '<div class="empty">제출된 업무일지가 없습니다.</div>'; return; }
   const moodMap = { '좋음': '😊', '보통': '😐', '힘듦': '😔' };
   list.innerHTML = data.map((j, i) => {
-    const initials = j.name ? j.name.slice(0, 2) : '??';
-    const moodIcon = moodMap[j.feedback?.mood] || '';
-    const doneRows = (j.done || []).map(r => `<tr><td>${r.a}</td><td>${r.b}</td><td><span class="badge b-green">${r.c}</span></td></tr>`).join('');
-    const issueRows = (j.issues || []).map(r => `<tr><td>${r.a}</td><td>${r.b}</td><td><span class="badge ${r.c === '해결' ? 'b-green' : r.c === '진행중' ? 'b-amber' : 'b-red'}">${r.c}</span></td></tr>`).join('');
-    const todoRows = (j.todos || []).map(r => `<tr><td>${r.a}</td><td>${r.b}</td><td><span class="badge b-blue">${r.c}</span></td></tr>`).join('');
+    const init = j.name ? j.name.slice(0, 2) : '??';
+    const mi = moodMap[j.feedback?.mood] || '';
+    const dr = (j.done || []).map(r => `<tr><td>${r.a}</td><td>${r.b}</td><td><span class="badge b-green">${r.c}</span></td></tr>`).join('');
+    const ir = (j.issues || []).map(r => `<tr><td>${r.a}</td><td>${r.b}</td><td><span class="badge ${r.c==='해결'?'b-green':r.c==='진행중'?'b-amber':'b-red'}">${r.c}</span></td></tr>`).join('');
+    const tr2 = (j.todos || []).map(r => `<tr><td>${r.a}</td><td>${r.b}</td><td><span class="badge b-blue">${r.c}</span></td></tr>`).join('');
     const fb = j.feedback || {};
-    return `<div class="jcard">
-      <div class="jcard-head" onclick="toggleCard(${i})">
-        <div class="name-row">
-          <div class="avatar">${initials}</div>
-          <span style="font-weight:500">${j.name}</span>
-          ${j.client ? `<span style="font-size:12px;color:var(--text3)">· ${j.client}</span>` : ''}
-          ${moodIcon ? `<span style="font-size:15px">${moodIcon}</span>` : ''}
-        </div>
-        <div style="display:flex;align-items:center;gap:10px">
-          <span style="font-size:12px;color:var(--text3)">${j.date}</span>
-          <svg class="chev" id="chev-${i}" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
-      </div>
-      <div class="jcard-body" id="body-${i}">
-        ${doneRows ? `<div class="sec-label"><span class="badge b-blue">1</span> 완료한 일</div><table class="vt"><thead><tr><th>업무</th><th>결과</th><th style="width:70px">상태</th></tr></thead><tbody>${doneRows}</tbody></table>` : ''}
-        ${issueRows ? `<div class="sec-label"><span class="badge b-amber">2</span> 이슈</div><table class="vt"><thead><tr><th>이슈</th><th>해결 방안</th><th style="width:70px">처리</th></tr></thead><tbody>${issueRows}</tbody></table>` : ''}
-        ${todoRows ? `<div class="sec-label"><span class="badge b-teal">3</span> 내일 할 일</div><table class="vt"><thead><tr><th>예정 업무</th><th>참고</th><th style="width:70px">우선순위</th></tr></thead><tbody>${todoRows}</tbody></table>` : ''}
-        <div class="sec-label"><span class="badge b-purple">4</span> 피드백</div>
-        <div class="fb-view">
-          <div class="fb-item"><span>잘한 점</span>${fb.good || '—'}</div>
-          <div class="fb-item"><span>개선할 점</span>${fb.improve || '—'}</div>
-          <div class="fb-item"><span>내일 목표</span>${fb.goal || '—'}</div>
-          <div class="fb-item"><span>만족도</span>${fb.mood || '—'}</div>
-        </div>
-      </div>
-    </div>`;
+    return `<div class="jcard"><div class="jcard-head" onclick="toggleCard(${i})"><div class="name-row"><div class="avatar">${init}</div><span style="font-weight:500">${j.name}</span>${j.client?`<span style="font-size:12px;color:var(--text3)">· ${j.client}</span>`:''} ${mi?`<span style="font-size:15px">${mi}</span>`:''}</div><div style="display:flex;align-items:center;gap:10px"><span style="font-size:12px;color:var(--text3)">${j.date}</span><svg class="chev" id="chev-${i}" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div><div class="jcard-body" id="body-${i}">${dr?`<div class="sec-label"><span class="badge b-blue">1</span> 완료한 일</div><table class="vt"><thead><tr><th>업무</th><th>결과</th><th style="width:70px">상태</th></tr></thead><tbody>${dr}</tbody></table>`:''}${ir?`<div class="sec-label"><span class="badge b-amber">2</span> 이슈</div><table class="vt"><thead><tr><th>이슈</th><th>해결 방안</th><th style="width:70px">처리</th></tr></thead><tbody>${ir}</tbody></table>`:''}${tr2?`<div class="sec-label"><span class="badge b-teal">3</span> 내일 할 일</div><table class="vt"><thead><tr><th>예정 업무</th><th>참고</th><th style="width:70px">우선순위</th></tr></thead><tbody>${tr2}</tbody></table>`:''}<div class="sec-label"><span class="badge b-purple">4</span> 피드백</div><div class="fb-view"><div class="fb-item"><span>잘한 점</span>${fb.good||'—'}</div><div class="fb-item"><span>개선할 점</span>${fb.improve||'—'}</div><div class="fb-item"><span>내일 목표</span>${fb.goal||'—'}</div><div class="fb-item"><span>만족도</span>${fb.mood||'—'}</div></div></div></div>`;
   }).join('');
 }
 
@@ -453,9 +494,140 @@ function toggleCard(i) {
   document.getElementById('chev-' + i).classList.toggle('open');
 }
 
-function clearDate() {
-  document.getElementById('admin-date').value = '';
-  loadAdmin();
+function clearDate() { document.getElementById('admin-date').value = ''; loadAdmin(); }
+
+// ── 채팅 ──────────────────────────────────────────
+async function initChat() {
+  const { data } = await db.from('messages').select('*').order('created_at', { ascending: true });
+  allMessages = data || [];
+  updateTagOptions();
+  renderMessages();
+  scrollChat();
+  lastSeenId = allMessages.length ? Math.max(...allMessages.map(m => m.id)) : 0;
+
+  chatSubscription = db.channel('messages-channel')
+    .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'messages' }, payload => {
+      allMessages.push(payload.new);
+      updateTagOptions();
+      renderMessages();
+      const chatTab = document.querySelector('.tab-page.active');
+      const isChatActive = chatTab && chatTab.id === 'tab-chat';
+      if (isChatActive) { scrollChat(); lastSeenId = payload.new.id; }
+      else if (payload.new.sender !== currentName) {
+        document.getElementById('unread-indicator').style.display = 'inline-block';
+      }
+    })
+    .subscribe();
+}
+
+function updateTagOptions() {
+  const tags = [...new Set(allMessages.filter(m => m.client_tag).map(m => m.client_tag))];
+  const sel = document.getElementById('chat-filter-select');
+  const current = sel.value;
+  sel.innerHTML = '<option value="">전체</option>' + tags.map(t => `<option value="${t}">${t}</option>`).join('');
+  if (current) sel.value = current;
+
+  const chips = document.getElementById('tag-chips');
+  chips.innerHTML = tags.map(t => `<button class="tag-chip${selectedTag===t?' on':''}" onclick="toggleTag('${t}',this)">${t}</button>`).join('') +
+    `<button class="tag-chip${selectedTag==='__new__'?' on':''}" onclick="toggleTag('__new__',this)">+ 새 거래처</button>`;
+  if (selectedTag === '__new__') {
+    if (!document.getElementById('new-tag-input')) {
+      const inp = document.createElement('input');
+      inp.id = 'new-tag-input'; inp.type = 'text'; inp.placeholder = '거래처명 입력';
+      inp.style.cssText = 'width:120px;font-size:12px;padding:3px 8px;';
+      chips.appendChild(inp);
+    }
+  }
+}
+
+function toggleTag(val, btn) {
+  if (selectedTag === val) { selectedTag = ''; }
+  else { selectedTag = val; }
+  document.querySelectorAll('.tag-chip').forEach(b => b.classList.remove('on'));
+  if (selectedTag) btn.classList.add('on');
+  updateTagOptions();
+}
+
+function filterMessages() {
+  renderMessages();
+  scrollChat();
+}
+
+function renderMessages() {
+  const filter = document.getElementById('chat-filter-select').value;
+  const msgs = filter ? allMessages.filter(m => m.client_tag === filter) : allMessages;
+  const container = document.getElementById('chat-messages');
+  if (!msgs.length) { container.innerHTML = '<div class="chat-empty">아직 메시지가 없습니다</div>'; return; }
+
+  let html = '';
+  let lastDate = '';
+  msgs.forEach(m => {
+    const d = new Date(m.created_at);
+    const dateStr = d.toLocaleDateString('ko-KR', { month: 'long', day: 'numeric', weekday: 'short' });
+    if (dateStr !== lastDate) {
+      html += `<div style="text-align:center;font-size:11px;color:var(--text3);margin:8px 0">${dateStr}</div>`;
+      lastDate = dateStr;
+    }
+    const isMine = m.sender === currentName;
+    const timeStr = d.toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit' });
+    const tagHtml = m.client_tag ? `<span class="msg-tag">${m.client_tag}</span>` : '';
+    const roleBadge = m.role === 'admin' ? '<span class="badge b-blue" style="font-size:10px">관리자</span>' : '';
+    if (isMine) {
+      html += `<div class="msg-row mine">
+        <div class="msg-meta">${tagHtml}</div>
+        <div class="msg-bubble">${escHtml(m.content)}</div>
+        <div class="msg-time">${timeStr}</div>
+      </div>`;
+    } else {
+      html += `<div class="msg-row other">
+        <div class="msg-meta">${roleBadge} <strong style="font-size:12px">${escHtml(m.sender)}</strong> ${tagHtml}</div>
+        <div class="msg-bubble">${escHtml(m.content)}</div>
+        <div class="msg-time">${timeStr}</div>
+      </div>`;
+    }
+  });
+  container.innerHTML = html;
+}
+
+function scrollChat() {
+  const c = document.getElementById('chat-messages');
+  setTimeout(() => c.scrollTop = c.scrollHeight, 50);
+}
+
+async function sendMessage() {
+  const input = document.getElementById('chat-input');
+  const content = input.value.trim();
+  if (!content) return;
+
+  let tag = '';
+  if (selectedTag && selectedTag !== '__new__') {
+    tag = selectedTag;
+  } else if (selectedTag === '__new__') {
+    const newInp = document.getElementById('new-tag-input');
+    tag = newInp ? newInp.value.trim() : '';
+  }
+
+  const btn = document.getElementById('send-btn');
+  btn.disabled = true;
+  const { error } = await db.from('messages').insert({
+    sender: currentName, role: currentRole, content, client_tag: tag || null
+  });
+  btn.disabled = false;
+  if (!error) {
+    input.value = '';
+    input.style.height = 'auto';
+    selectedTag = '';
+    updateTagOptions();
+  }
+}
+
+function autoResize(el) {
+  el.style.height = 'auto';
+  el.style.height = Math.min(el.scrollHeight, 120) + 'px';
+}
+
+function escHtml(str) {
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');
 }
 </script>
 </body>
